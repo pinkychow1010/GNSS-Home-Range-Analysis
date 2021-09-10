@@ -1,0 +1,12 @@
+name: GorillaHomeRangeAnalysis
+title: GorillaHomeRangeAnalysis
+username:
+account: eagle-rproject-globalforestchanges
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4627124
+bundleId: 5019520
+url: https://eagle-rproject-globalforestchanges.shinyapps.io/GorillaHomeRangeAnalysis/
+when: 1631277706.13437
+asMultiple: FALSE
+asStatic: FALSE

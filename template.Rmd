@@ -1,0 +1,279 @@
+---
+title: "Gorilla Home Range"
+output: 
+  flexdashboard::flex_dashboard:
+    social: menu
+    source_code: embed
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+<style>                     
+.navbar {
+  background-color:#2a3d26;
+  border-color:#232a28;
+}
+.navbar-brand {
+color:#f9ffe9!important;
+}
+</style>    
+
+<style>
+body  {
+background-image: url("https://www.visitrwanda.com/wp-content/uploads/fly-images/145/banner-1-1920x1208.jpg");background-color: #cccccc;background-size: cover;resize:both}
+</style>
+
+<style>
+  .box {
+  background-color: #ffffff; opacity: 0.8;
+  }
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+
+library(flexdashboard)
+library(DT)
+library(ggplot2)
+library(plotly)
+library(dplyr)
+library(magrittr)
+```
+
+# Main Page
+
+## Column {data-width=300}
+
+###
+
+<p>
+<font face="Georgia" size="3em" color="#232a28">This dashboard is an analysis tool to compute and visualize home range data of Mountain Gorillas collected by GNSS sensors from [<bold>Dian Fossey Gorilla Fund International</bold>](https://gorillafund.org/). The observed Gorillas are located at the Volcanoes National Park, Rwanda. This analysis tool enables:</font> 
+</p>
+
+<p>
+<ul>
+  <li><font face="Georgia" size="3em" color="#232a28">Compute home range sizes, walking distances, and overlap areas</font></li>
+  <li><font face="Georgia" size="3em" color="#232a28">Export statistical data tables and spatial results</font></li>
+  <li><font face="Georgia" size="3em" color="#232a28">Data visualization of home range analysis</font></li>
+</ul>
+</p>
+
+<p>
+License: https://creativecommons.org/licenses/by-nc/3.0/
+
+Author: [Ka Hei Chow](http://students.eagle-science.org/students/students-2020/ka-hei/)
+</p>
+
+<br>
+<br>
+
+<style>
+div.relative {
+  position: relative;
+  left: 5px;
+  bottom: 20px;
+}
+</style>
+
+<div class="relative">
+![](https://www.gorillasafaricompany.com/wp-content/uploads/2019/03/logo-dian-fossey.png){width=70%}
+</div>
+
+## Column {data-width=700}
+
+```{r picture, echo = F, out.width = '100%'}
+knitr::include_graphics("https://splendoursofafricatours.com/uploads/destination_detail/22/volcanoes-Park-Rwanda-Banner.jpg")
+```
+
+```{r}
+source("analysisFunctions.R")
+```
+
+# Data Availability
+
+## {data-width=200}
+
+### { .box }
+
+<font face="Georgia" size="4em" color="#232a28">This panel displays the availability of GNSS data for each Gorilla group.</font>
+
+# Statistics {data-navmenu="Home Range"}
+
+## {data-width=200}
+
+### { .box }
+
+<font face="Georgia" size="4em" color="#232a28">The collected GNSS data is used to calculate the home range of the Mountain Gorillas using Kernel density estimator with bivariate normal kernel using 95% of estimated distribution. Key statistics by Gorilla group are shown in this panel.</font>
+
+```{r, echo = F}
+csv <- "Gorilla_ranging_Jan_May_21.csv"
+df <- GPS2df(csv)
+
+total_home_range <- round(ttlHR(df),1)
+areadf <- gpHR(df)
+
+max_area <- round(max(areadf$area),1)
+min_area <- round(min(areadf$area),1)
+mean_area <- round(mean(areadf$area),1)
+```
+
+## {data-width=300}
+
+### Max Size (km²)
+```{r}
+valueBox(max_area, icon="ion-stats-bars", color="#5f8111")
+```
+
+### Min Size (km²)
+```{r}
+valueBox(min_area, icon="ion-stats-bars", color="#a3ca61")
+```
+
+### Mean Size (km²)
+```{r}
+valueBox(mean_area, icon="ion-android-home", color="#5f8111")
+```
+
+### Total Coverage (km²)
+```{r}
+valueBox(total_home_range, icon="ion-android-locate", color="#a3ca61")
+```
+
+## {data-width=500}
+
+### Home Range Size Data Table
+
+```{r functions}
+nice_datatable <- function(df, caption = NULL, ...) {
+  df %>%
+    datatable(
+      extensions = c("Buttons", "FixedHeader", "Scroller"),
+      filter = "top",
+      rownames = FALSE,
+      escape = FALSE,
+      caption = caption,
+      options =
+        list(
+          dom = "Brtip",
+          deferRender = FALSE,
+          scrollY = 300,
+          scroller = TRUE,
+          scrollX = TRUE,
+          fixedHeader = FALSE,
+          buttons = c("copy", "csv"),
+          pageLength = nrow(df),
+          lengthChange = FALSE,
+          ...
+        )
+    )
+}
+```
+
+```{r}
+nice_datatable(areadf %>% mutate_if(is.numeric, round, 2))
+```
+
+# Map {data-navmenu="Home Range"}
+
+## {data-width=600}
+
+```{r}
+#Interactive Map
+
+map <- mapDisplay(df)
+map@map %>% setView(29.49, -1.5, zoom = 13)
+```
+
+## {data-width=400}
+
+###
+```{r}
+#Overview Map
+
+knitr::include_graphics("https://www.berggorilla.org/fileadmin/_processed_/4/e/csm_volcano_national_park_f577bb5a63.png")
+```
+
+###
+```{r}
+#Bar Chart: Home Range Size
+
+fig1 <- areaBar(areadf)
+ggplotly(fig1, tooltip=c("x","y")) %>% config(displayModeBar = FALSE)
+
+```
+
+# Group Dynamics
+
+## {data-width=200}
+
+### { .box } 
+<font face="Georgia" size="4em" color="#232a28">This panel display information about how home range of different Mountain Gorilla groups overlap with each other. It includes a heatmap showing the interactions among groups, as well as a scatter plot to illustrate the relationship between home range size and total share of home range.</font>
+
+## {data-width=500}
+
+### 
+
+```{r}
+fig2 <- overlapBar(df)
+ggplotly(fig2, tooltip=c("y")) %>% config(displayModeBar = FALSE)
+```
+
+### 
+
+```{r}
+fig3 <- dynamicViz(df)
+ggplotly(fig3) %>% config(displayModeBar = FALSE)
+```
+
+## {data-width=300} {.tabset }
+
+### Interactions
+
+```{r}
+# Tab 2
+#fig4 <- GPheatmap(df)
+#fig4
+
+invisible(GPheatmap(df))
+
+```
+
+### Data Table
+
+```{r}
+# Tab 1
+
+gp_dyn_df <- overlapAnalysis(df)
+names(gp_dyn_df) <- c("Primary Group","Home Range Size of Primary Group","Interacting Group","Home Range Overlapped Area","Percentage to Size of Primary Group")
+
+nice_datatable(gp_dyn_df %>% mutate_if(is.numeric, round, 2))
+```
+
+# Walking Distance
+
+##
+
+```{r}
+
+```
+
+# References
+
+<style>
+  .ref {
+  background-image: url("https://www.zagasexplorer.com/assets/destinations-uganda-bwindi-impenetrable-forest-national-park.jpg");background-size: cover;resize: both;
+  }
+</style>
+
+### { .ref }
+
+<ul>
+
+<li><font face="Georgia" size="5em" color="#ffffff">Calenge C (2006). “The package adehabitat for the R software: tool for the analysis of space and habitat use by animals.” Ecological Modelling, 197, 1035.</font></li>
+
+<li><font face="Georgia" size="5em" color="#ffffff">Tétreault, M., Franke, A. (2017). Home range estimation: examples of estimator effects. Applied raptor ecology: essentials from Gyrfalcon research. The Peregrine Fund, Boise, Idaho, USA, 207-242.</font></li>
+
+<li><font face="Georgia" size="5em" color="#ffffff">Walter,D., Fischer,J.W.,(2016). Home Range Estimation. In Manual of Applied Spatial Ecology (pp. 72–105). essay, Walter Applied Spatial Ecology Laboratory.</font></li>
+
+</ul>
