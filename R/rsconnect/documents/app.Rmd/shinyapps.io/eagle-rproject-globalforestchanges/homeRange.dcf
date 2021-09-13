@@ -1,0 +1,13 @@
+name: homeRange
+title: homeRange
+username:
+account: eagle-rproject-globalforestchanges
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4635399
+bundleId: 5024392
+url: https://eagle-rproject-globalforestchanges.shinyapps.io/homeRange/
+when: 1631434910.25388
+lastSyncTime: 1631434910.25388
+asMultiple: FALSE
+asStatic: FALSE
