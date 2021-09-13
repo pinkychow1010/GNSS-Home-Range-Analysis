@@ -1,0 +1,12 @@
+"0","  fig <- ggplot(dist_all_gp, 
+         aes(x=dist, y=reorder(id, dist, FUN = mean), fill=id)) + 
+    geom_boxplot(show.legend = FALSE) + 
+    scale_color_brewer(palette=""Dark2"") + 
+    xlab(""Distance (km)"") +  # x label
+    ylab(""Group"") +  # y label
+    ggtitle(""Daily Walking Distance"", subtitle = waiver()) + 
+    theme(text = element_text(size=14))
+"
+"2","Error in ggplot(dist_all_gp, aes(x = dist, y = reorder(id, dist, FUN = mean),  : 
+  object 'dist_all_gp' not found
+"

@@ -1,0 +1,1 @@
+"0","nice_datatable(areadf %>% mutate_if(is.numeric, round, 2))"

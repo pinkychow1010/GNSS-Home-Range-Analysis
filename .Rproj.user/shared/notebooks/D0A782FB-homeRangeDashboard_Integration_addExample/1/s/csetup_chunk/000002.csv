@@ -1,0 +1,71 @@
+"0","knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())"
+"0",""
+"0","library(flexdashboard)"
+"0","library(shiny)"
+"0","library(shinyWidgets)"
+"0","library(DT)"
+"2","
+Attaching package: ‘DT’
+
+"
+"2","The following objects are masked from ‘package:shiny’:
+
+    dataTableOutput, renderDataTable
+
+"
+"0","library(ggplot2)"
+"0","library(plotly)"
+"2","
+Attaching package: ‘plotly’
+
+"
+"2","The following object is masked from ‘package:MASS’:
+
+    select
+
+"
+"2","The following object is masked from ‘package:ggplot2’:
+
+    last_plot
+
+"
+"2","The following object is masked from ‘package:raster’:
+
+    select
+
+"
+"2","The following object is masked from ‘package:stats’:
+
+    filter
+
+"
+"2","The following object is masked from ‘package:graphics’:
+
+    layout
+
+"
+"0","library(dplyr)"
+"0","library(magrittr)"
+"2","
+Attaching package: ‘magrittr’
+
+"
+"2","The following object is masked from ‘package:purrr’:
+
+    set_names
+
+"
+"2","The following object is masked from ‘package:tidyr’:
+
+    extract
+
+"
+"2","The following object is masked from ‘package:raster’:
+
+    extract
+
+"
+"0","library(rhandsontable)"
+"2","package ‘rhandsontable’ was built under R version 4.0.5"
+"0","source(""analysisFunctions.R"")"
+"2","The working directory was changed to C:/Users/Admin/Desktop/Intern_HiWi/GorillaFund inside a notebook chunk. The working directory will be reset when the chunk is finished running. Use the knitr root.dir option in the setup chunk to change the working directory for notebook chunks."

@@ -1,0 +1,4 @@
+"0","observeEvent(input$helpBtn, {"
+"0","  shinyalert(title = ""Welcome!"", "
+"0","             text = ""This the customized dashboard for Gorilla home range analysis! Here you can go to 'Computing Tool' to upload a csv file. The table will be render on the right size and analysis will begin. The results are distributed in the 'Home Range Analysis', 'Group Dynamics', and 'Walking Distance' panels. From 'Data Availability' you can check the time stamps of the input data. Clicking 'Help' button in each panel will provide further instructions."")})"
+"0",""

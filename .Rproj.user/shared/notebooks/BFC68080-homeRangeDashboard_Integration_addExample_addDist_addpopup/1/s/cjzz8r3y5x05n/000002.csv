@@ -1,0 +1,15 @@
+"0",""
+"0","reactive({"
+"0","  renderTable({"
+"0","    input$file1"
+"0","    #dataset()"
+"0","  })"
+"0","})"
+"1","reactive({
+    renderTable({
+        input$file1
+    })
+})"
+"1"," "
+"1","
+"

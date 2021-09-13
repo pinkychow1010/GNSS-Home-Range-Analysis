@@ -1,0 +1,4 @@
+"0","#Bar Chart: Home Range Size"
+"0",""
+"0","fig1 <- areaBar(areadf)"
+"0","ggplotly(fig1, tooltip=c(""x"",""y"")) %>% config(displayModeBar = FALSE)"

@@ -1,0 +1,25 @@
+"0",""
+"0","reactive({"
+"0","  if (input$example == FALSE){"
+"0","  renderTable({"
+"0","  dataset <- dataset()"
+"0","  dataset"
+"0","})"
+"0","  } else {"
+"0","    example_ds"
+"0","  }"
+"0","})"
+"1","reactive({
+    if (input$example == FALSE) {
+        renderTable({
+            dataset <- dataset()
+            dataset
+        })
+    }
+    else {
+        example_ds
+    }
+})"
+"1"," "
+"1","
+"

@@ -1,0 +1,8 @@
+"0","knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())"
+"0",""
+"0","library(flexdashboard)"
+"0","library(DT)"
+"0","library(ggplot2)"
+"0","library(plotly)"
+"0","library(dplyr)"
+"0","library(magrittr)"

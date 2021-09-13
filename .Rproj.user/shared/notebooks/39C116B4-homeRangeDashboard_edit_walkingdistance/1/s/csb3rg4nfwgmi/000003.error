@@ -1,0 +1,1 @@
+{"frames":[],"message":"Error in nice_datatable(areadf %>% mutate_if(is.numeric, round, 2)) : \n  could not find function \"nice_datatable\"\n"}
