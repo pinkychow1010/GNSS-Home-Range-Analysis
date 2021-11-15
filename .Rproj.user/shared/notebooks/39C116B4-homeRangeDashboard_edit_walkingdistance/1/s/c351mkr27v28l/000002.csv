@@ -1,5 +1,0 @@
-"0","output$hot = renderRHandsontable({"
-"0","  rhandsontable(BFLD(), height = 550) %>%  hot_rows()"
-"0","})"
-"2","Error in output$hot = renderRHandsontable({ : object 'output' not found
-"

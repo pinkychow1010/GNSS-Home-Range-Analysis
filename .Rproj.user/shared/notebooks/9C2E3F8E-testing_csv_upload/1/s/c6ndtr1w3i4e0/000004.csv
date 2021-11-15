@@ -1,4 +1,0 @@
-"0","dataset <- eventReactive(input$file1,{"
-"0","  #dataset <- read.csv(input$file1$datapath)"
-"0","  dataset <- GPS2df(input$file1$datapath)"
-"0","})"

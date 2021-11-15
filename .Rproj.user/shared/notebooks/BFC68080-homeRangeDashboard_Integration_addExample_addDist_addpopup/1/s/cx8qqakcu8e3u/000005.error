@@ -1,1 +1,0 @@
-{"frames":[{"func":"dist_df(dataset) %>% group_by(id) %>% summarise(mean = mean(dist), \n    max = max(dist), min = min(dist)) %>% mutate_if(is.numeric, \n    round, 2) %>% nice_datatable()","file":"","line_number":0,"end_line_number":0,"character_number":0,"end_character_number":0}],"message":"Error in nice_datatable(.) : could not find function \"nice_datatable\"\n"}

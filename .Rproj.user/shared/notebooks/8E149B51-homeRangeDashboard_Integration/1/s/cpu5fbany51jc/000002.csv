@@ -1,9 +1,0 @@
-"0","max_hr <- reactive({"
-"0","  dataset <- dataset()"
-"0","  areadf <- gpHR(dataset)"
-"0","  round(max(areadf$area),1)"
-"0","})"
-"0",""
-"0","renderPrint(max_hr())"
-"1","<shiny.render.function> 
-"

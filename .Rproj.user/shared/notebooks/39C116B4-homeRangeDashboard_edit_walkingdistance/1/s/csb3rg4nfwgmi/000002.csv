@@ -1,5 +1,0 @@
-"0","nice_datatable(areadf %>% mutate_if(is.numeric, round, 2))
-"
-"2","Error in nice_datatable(areadf %>% mutate_if(is.numeric, round, 2)) : 
-  could not find function ""nice_datatable""
-"

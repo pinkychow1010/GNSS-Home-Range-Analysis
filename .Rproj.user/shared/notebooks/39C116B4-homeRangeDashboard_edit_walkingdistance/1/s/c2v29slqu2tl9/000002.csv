@@ -1,5 +1,0 @@
-"0","fileInput(""InputBFL"", ""Choose CSV File"","
-"0","                multiple = FALSE,"
-"0","                accept = c(""text/csv"","
-"0","                         ""text/comma-separated-values,text/plain"","
-"0","                         "".csv""))"
